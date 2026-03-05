@@ -40,6 +40,9 @@ impl MyRenderPipeline {
             ShaderType::SierpinskiTetrahedron => {
                 device.create_shader_module(include_spirv!(env!("SHADER_TETRAHEDRON_SPV")))
             }
+            ShaderType::MengerSponge => {
+                device.create_shader_module(include_spirv!(env!("SHADER_MENGER_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {

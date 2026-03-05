@@ -27,6 +27,7 @@ pub fn main() -> anyhow::Result<()> {
     compile_shader(manifest_dir, "mandelbrotset", "SHADER_MANDELBROT_SPV")?;
     compile_shader(manifest_dir, "julia-set", "SHADER_JULIA_SPV")?;
     compile_shader(manifest_dir, "sierpinskie-tetrahedron", "SHADER_TETRAHEDRON_SPV")?;
+    compile_shader(manifest_dir, "menger-sponge", "SHADER_MENGER_SPV")?;
 
     Ok(())
 }
