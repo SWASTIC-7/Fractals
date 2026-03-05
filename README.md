@@ -1,4 +1,4 @@
-# Fractal Shaders with Rust-GPU
+# SelfSimilar - A Fractal Shaders with Rust-GPU
 
 A project for rendering fractal shapes using shaders written entirely in Rust via [Rust-GPU](https://github.com/Rust-GPU/rust-gpu).
 
@@ -396,8 +396,5 @@ $$
 
 - [Rust-GPU](https://github.com/Rust-GPU/rust-gpu) - Compile Rust to SPIR-V
 - [wgpu](https://wgpu.rs/) - Safe Rust graphics API
+- [fractals](https://www.youtube.com/watch?v=nE10XNKcejI&list=PLj30h6LDBCwV5BoTjVL6tuakd2-eBn-Rw)
 
-
-## License
-
-MIT
