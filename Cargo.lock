@@ -1097,6 +1097,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "koch-curve"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "glam",
+ "spirv-std",
+]
+
+[[package]]
 name = "kqueue"
 version = "1.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1224,6 +1233,7 @@ dependencies = [
  "bytemuck",
  "cargo-gpu",
  "env_logger",
+ "koch-curve",
  "pollster",
  "raw-window-handle",
  "sierpinskie-carpet",

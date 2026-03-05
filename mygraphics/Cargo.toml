@@ -14,6 +14,7 @@ workspace = true
 # shader crate
 sierpinskie-triangle = { path = "../sierpinskie-triangle" }
 sierpinskie-carpet = { path = "../sierpinskie-carpet" }
+koch-curve = { path = "../koch-curve" }
 # API
 wgpu.workspace = true
 pollster.workspace = true

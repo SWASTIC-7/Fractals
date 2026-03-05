@@ -28,6 +28,9 @@ impl MyRenderPipeline {
             ShaderType::SierpinskiCarpet => {
                 device.create_shader_module(include_spirv!(env!("SHADER_CARPET_SPV")))
             }
+            ShaderType::KochCurve => {
+                device.create_shader_module(include_spirv!(env!("SHADER_KOCH_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {

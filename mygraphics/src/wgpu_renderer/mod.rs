@@ -14,6 +14,7 @@ mod swapchain;
 pub enum ShaderType {
     SierpinskiTriangle,
     SierpinskiCarpet,
+    KochCurve,
 }
 
 impl ShaderType {
@@ -21,6 +22,7 @@ impl ShaderType {
         match self {
             ShaderType::SierpinskiTriangle => "Sierpinski Triangle",
             ShaderType::SierpinskiCarpet => "Sierpinski Carpet",
+            ShaderType::KochCurve => "Koch Curve",
         }
     }
 }

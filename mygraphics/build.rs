@@ -23,6 +23,7 @@ pub fn main() -> anyhow::Result<()> {
     // Compile all shader crates
     compile_shader(manifest_dir, "sierpinskie-triangle", "SHADER_TRIANGLE_SPV")?;
     compile_shader(manifest_dir, "sierpinskie-carpet", "SHADER_CARPET_SPV")?;
+    compile_shader(manifest_dir, "koch-curve", "SHADER_KOCH_SPV")?;
 
     Ok(())
 }
