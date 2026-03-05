@@ -19,6 +19,7 @@ pub enum ShaderType {
     JuliaSet,
     SierpinskiTetrahedron,
     MengerSponge,
+    Mandelbulb,
 }
 
 impl ShaderType {
@@ -31,6 +32,7 @@ impl ShaderType {
             ShaderType::JuliaSet => "Julia Set",
             ShaderType::SierpinskiTetrahedron => "Sierpinski Tetrahedron",
             ShaderType::MengerSponge => "Menger Sponge",
+            ShaderType::Mandelbulb => "Mandelbulb",
         }
     }
 }
