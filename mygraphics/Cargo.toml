@@ -12,8 +12,8 @@ workspace = true
 
 [dependencies]
 # shader crate
-sierpinskie-shaders = { path = "../sierpinskie-shaders" }
-
+sierpinskie-triangle = { path = "../sierpinskie-triangle" }
+sierpinskie-carpet = { path = "../sierpinskie-carpet" }
 # API
 wgpu.workspace = true
 pollster.workspace = true

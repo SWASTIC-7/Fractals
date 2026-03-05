@@ -1,5 +1,6 @@
 use crate::wgpu_renderer::renderer::{GlobalBindGroup, GlobalBindGroupLayout};
-use sierpinskie_shaders::ShaderConstants;
+use crate::wgpu_renderer::ShaderType;
+use sierpinskie_triangle::ShaderConstants;
 use wgpu::{
     ColorTargetState, ColorWrites, Device, FragmentState, FrontFace, MultisampleState,
     PipelineLayoutDescriptor, PolygonMode, PrimitiveState, PrimitiveTopology, PushConstantRange,
@@ -17,8 +18,17 @@ impl MyRenderPipeline {
         device: &Device,
         global_bind_group_layout: &GlobalBindGroupLayout,
         out_format: TextureFormat,
+        shader_type: ShaderType,
     ) -> anyhow::Result<Self> {
-        let module = device.create_shader_module(include_spirv!(env!("SHADER_SPV_PATH")));
+        // Load the appropriate shader based on selection
+        let module = match shader_type {
+            ShaderType::SierpinskiTriangle => {
+                device.create_shader_module(include_spirv!(env!("SHADER_TRIANGLE_SPV")))
+            }
+            ShaderType::SierpinskiCarpet => {
+                device.create_shader_module(include_spirv!(env!("SHADER_CARPET_SPV")))
+            }
+        };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {
             label: Some("MyRenderPipeline layout"),

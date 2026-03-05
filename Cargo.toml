@@ -1,7 +1,8 @@
 [workspace]
 members = [
     "mygraphics",
-    "sierpinskie-shaders"
+    "sierpinskie-triangle",
+    "sierpinskie-carpet"
 ]
 resolver = "3"
 

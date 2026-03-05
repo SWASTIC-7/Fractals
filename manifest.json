@@ -1,11 +1,11 @@
 [
   {
-    "source_path": "../sierpinskie_shaders.spv",
+    "source_path": "../sierpinskie_triangle.spv",
     "entry_point": "main_fs",
     "wgsl_entry_point": "main_fs"
   },
   {
-    "source_path": "../sierpinskie_shaders.spv",
+    "source_path": "../sierpinskie_triangle.spv",
     "entry_point": "main_vs",
     "wgsl_entry_point": "main_vs"
   }

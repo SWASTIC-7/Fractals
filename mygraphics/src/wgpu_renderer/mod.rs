@@ -1,6 +1,6 @@
 use crate::wgpu_renderer::swapchain::MySwapchainManager;
 use anyhow::Context;
-use sierpinskie_shaders::ShaderConstants;
+use sierpinskie_triangle::ShaderConstants;
 use std::sync::Arc;
 use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
@@ -9,21 +9,38 @@ mod render_pipeline;
 mod renderer;
 mod swapchain;
 
-pub fn main() -> anyhow::Result<()> {
-    env_logger::init();
-    pollster::block_on(main_inner())
+/// Available shader types
+#[derive(Debug, Clone, Copy)]
+pub enum ShaderType {
+    SierpinskiTriangle,
+    SierpinskiCarpet,
 }
 
-pub async fn main_inner() -> anyhow::Result<()> {
+impl ShaderType {
+    pub fn name(&self) -> &'static str {
+        match self {
+            ShaderType::SierpinskiTriangle => "Sierpinski Triangle",
+            ShaderType::SierpinskiCarpet => "Sierpinski Carpet",
+        }
+    }
+}
+
+pub fn main(shader_type: ShaderType) -> anyhow::Result<()> {
+    env_logger::init();
+    pollster::block_on(main_inner(shader_type))
+}
+
+pub async fn main_inner(shader_type: ShaderType) -> anyhow::Result<()> {
     // env_logger::init();
     let event_loop = EventLoop::new()?;
     // FIXME(eddyb) incomplete `winit` upgrade, follow the guides in:
     // https://github.com/rust-windowing/winit/releases/tag/v0.30.0
+    let window_title = format!("Rust GPU Fractals - {}", shader_type.name());
     #[allow(deprecated)]
     let window = Arc::new(
         event_loop.create_window(
             winit::window::Window::default_attributes()
-                .with_title("Rust GPU - wgpu")
+                .with_title(&window_title)
                 .with_inner_size(winit::dpi::LogicalSize::new(
                     f64::from(1280),
                     f64::from(720),
@@ -54,7 +71,7 @@ pub async fn main_inner() -> anyhow::Result<()> {
         .context("Failed to create device")?;
 
     let mut swapchain = MySwapchainManager::new(adapter.clone(), device.clone(), window, surface);
-    let renderer = renderer::MyRenderer::new(device, queue, swapchain.format())?;
+    let renderer = renderer::MyRenderer::new(device, queue, swapchain.format(), shader_type)?;
 
     let start = std::time::Instant::now();
     let mut event_handler =

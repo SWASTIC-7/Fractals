@@ -2,12 +2,11 @@ use cargo_gpu::install::Install;
 use cargo_gpu::spirv_builder::{ShaderPanicStrategy, SpirvMetadata};
 use std::path::PathBuf;
 
-pub fn main() -> anyhow::Result<()> {
-    let manifest_dir = env!("CARGO_MANIFEST_DIR");
-    let crate_path = [manifest_dir, "..", "sierpinskie-shaders"]
+fn compile_shader(manifest_dir: &str, shader_name: &str, env_var_name: &str) -> anyhow::Result<()> {
+    let crate_path: PathBuf = [manifest_dir, "..", shader_name]
         .iter()
         .copied()
-        .collect::<PathBuf>();
+        .collect();
 
     let install = Install::from_shader_crate(crate_path.clone()).run()?;
     let mut builder = install.to_spirv_builder(crate_path, "spirv-unknown-vulkan1.3");
@@ -17,6 +16,16 @@ pub fn main() -> anyhow::Result<()> {
 
     let compile_result = builder.build()?;
     let spv_path = compile_result.module.unwrap_single();
-    println!("cargo::rustc-env=SHADER_SPV_PATH={}", spv_path.display());
+    println!("cargo::rustc-env={}={}", env_var_name, spv_path.display());
+    Ok(())
+}
+
+pub fn main() -> anyhow::Result<()> {
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+
+    // Compile all shader crates
+    compile_shader(manifest_dir, "sierpinskie-triangle", "SHADER_TRIANGLE_SPV")?;
+    compile_shader(manifest_dir, "sierpinskie-carpet", "SHADER_CARPET_SPV")?;
+
     Ok(())
 }

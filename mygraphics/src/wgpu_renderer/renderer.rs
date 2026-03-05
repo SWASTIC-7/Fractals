@@ -1,5 +1,6 @@
 use crate::wgpu_renderer::render_pipeline::MyRenderPipeline;
-use sierpinskie_shaders::ShaderConstants;
+use crate::wgpu_renderer::ShaderType;
+use sierpinskie_triangle::ShaderConstants;
 use wgpu::util::{BufferInitDescriptor, DeviceExt};
 use wgpu::wgt::CommandEncoderDescriptor;
 use wgpu::{
@@ -17,9 +18,15 @@ pub struct MyRenderer {
 }
 
 impl MyRenderer {
-    pub fn new(device: Device, queue: Queue, out_format: TextureFormat) -> anyhow::Result<Self> {
+    pub fn new(
+        device: Device,
+        queue: Queue,
+        out_format: TextureFormat,
+        shader_type: ShaderType,
+    ) -> anyhow::Result<Self> {
         let global_bind_group_layout = GlobalBindGroupLayout::new(&device);
-        let pipeline = MyRenderPipeline::new(&device, &global_bind_group_layout, out_format)?;
+        let pipeline =
+            MyRenderPipeline::new(&device, &global_bind_group_layout, out_format, shader_type)?;
         Ok(Self {
             global_bind_group_layout,
             pipeline,

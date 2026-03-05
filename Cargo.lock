@@ -1226,7 +1226,8 @@ dependencies = [
  "env_logger",
  "pollster",
  "raw-window-handle",
- "sierpinskie-shaders",
+ "sierpinskie-carpet",
+ "sierpinskie-triangle",
  "wgpu",
  "winit",
 ]
@@ -2055,7 +2056,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
-name = "sierpinskie-shaders"
+name = "sierpinskie-carpet"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "glam",
+ "spirv-std",
+]
+
+[[package]]
+name = "sierpinskie-triangle"
 version = "0.1.0"
 dependencies = [
  "bytemuck",
