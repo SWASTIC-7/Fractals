@@ -55,7 +55,7 @@ cargo run -p mygraphics
 
 #### Sierpinski Triangle
 
-<!-- ![Sierpinski Triangle](assets/sierpinski-triangle.gif) -->
+![Sierpinski Triangle](./assets/sierpinskie-triangle.gif)
 
 The **Sierpinski Triangle** (also called Sierpinski Gasket) is a self-similar fractal created by recursively removing the central inverted triangle from an equilateral triangle.
 
@@ -79,7 +79,7 @@ $$
 
 #### Sierpinski Carpet
 
-<!-- ![Sierpinski Carpet](assets/sierpinski-carpet.gif) -->
+![Sierpinski Carpet](assets/sierpinskie-carpet.gif)
 
 The **Sierpinski Carpet** is a plane fractal that generalizes the Cantor set to two dimensions. It is created by recursively subdividing a square into 9 smaller squares and removing the central one.
 
@@ -100,7 +100,7 @@ $$
 
 #### Koch Curve
 
-<!-- ![Koch Curve](assets/koch-curve.gif) -->
+![Koch Curve](assets/koch-curve.gif)
 
 The **Koch Curve** (Koch Snowflake when closed) is a fractal curve created by repeatedly replacing each line segment with a bent line consisting of four segments of equal length.
 
@@ -122,7 +122,7 @@ $$
 
 #### Mandelbrot Set
 
-<!-- ![Mandelbrot Set](assets/mandelbrot-set.gif) -->
+![Mandelbrot Set](assets/mandelbrotset.gif)
 
 The **Mandelbrot Set** is the set of complex numbers $c$ for which the iterated function does not diverge to infinity when starting from $z = 0$.
 
@@ -155,7 +155,7 @@ $$
 
 #### Julia Set
 
-<!-- ![Julia Set](assets/julia-set.gif) -->
+![Julia Set](assets/julia-set.gif)
 
 The **Julia Set** is closely related to the Mandelbrot Set. For a fixed complex constant $c$, the Julia Set is the boundary of points that do not escape to infinity under iteration.
 
@@ -204,7 +204,7 @@ $$
 
 #### Sierpinski Tetrahedron
 
-<!-- ![Sierpinski Tetrahedron](assets/sierpinski-tetrahedron.gif) -->
+![Sierpinski Tetrahedron](assets/sierpinskie-tetrahedron.gif)
 
 The **Sierpinski Tetrahedron** (Tetrix) is the 3D analog of the Sierpinski Triangle. It is constructed by recursively removing the central octahedron from a tetrahedron.
 
@@ -236,7 +236,7 @@ $$
 
 #### Menger Sponge
 
-<!-- ![Menger Sponge](assets/menger-sponge.gif) -->
+![Menger Sponge](assets/menger-sponge.gif)
 
 The **Menger Sponge** is a 3D fractal that generalizes the Sierpinski Carpet to three dimensions. It is created by recursively removing cross-shaped sections from a cube.
 
@@ -275,7 +275,7 @@ $$
 
 #### Mandelbulb
 
-<!-- ![Mandelbulb](assets/mandelbulb.gif) -->
+![Mandelbulb](assets/mandelbulb.gif)
 
 The **Mandelbulb** is a 3D analog of the Mandelbrot Set, using spherical coordinates to define a power operation in 3D space.
 
@@ -318,7 +318,7 @@ $$
 
 #### Mandelbox
 
-<!-- ![Mandelbox](assets/mandelbox.gif) -->
+![Mandelbox](assets/mandelbox.gif)
 
 The **Mandelbox** is a box-like fractal discovered by Tom Lowe in 2010. It uses conditional folding operations rather than power formulas.
 
