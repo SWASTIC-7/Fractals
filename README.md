@@ -68,6 +68,7 @@ $$
 $$
 
 Using space-folding technique:
+
 $$
 p = |p| \quad \text{(fold to positive quadrant)}
 $$
@@ -92,6 +93,7 @@ $$
 $$
 
 **Iteration formula:**
+
 $$
 p = 3p - \lfloor 3p + 0.5 \rfloor \quad \text{(scale and center)}
 $$
@@ -107,11 +109,13 @@ The **Koch Curve** (Koch Snowflake when closed) is a fractal curve created by re
 **Construction:** Start with a line segment. Divide into three equal parts. Replace the middle third with two sides of an equilateral triangle (removing the base). Repeat for all segments.
 
 **Recursive definition:** If $K_0$ is a line segment, then:
+
 $$
 K_{n+1} = \text{Transform}(K_n) \text{ where each segment becomes 4 segments of length } \frac{1}{3}
 $$
 
 **Parametric formula** for iteration $n$:
+
 $$
 \text{Length} = \left(\frac{4}{3}\right)^n \cdot L_0
 $$
@@ -127,6 +131,7 @@ $$
 The **Mandelbrot Set** is the set of complex numbers $c$ for which the iterated function does not diverge to infinity when starting from $z = 0$.
 
 **Iteration formula:**
+
 $$
 z_{n+1} = z_n^2 + c
 $$
@@ -134,19 +139,23 @@ $$
 where $z_0 = 0$ and $c$ is the point being tested.
 
 **Escape condition:** A point $c$ is considered outside the set if:
+
 $$
 |z_n| > 2 \text{ (escape radius)}
 $$
 
 **Complex arithmetic:**
+
 $$
 z = x + iy
 $$
+
 $$
 z^2 = (x^2 - y^2) + i(2xy)
 $$
 
 **Coloring:** Based on escape iteration count $n$ with smooth coloring:
+
 $$
 \text{smooth } n = n + 1 - \frac{\log(\log|z_n|)}{\log 2}
 $$
@@ -160,6 +169,7 @@ $$
 The **Julia Set** is closely related to the Mandelbrot Set. For a fixed complex constant $c$, the Julia Set is the boundary of points that do not escape to infinity under iteration.
 
 **Iteration formula:**
+
 $$
 z_{n+1} = z_n^2 + c
 $$
@@ -176,6 +186,7 @@ where $z_0$ is the point being tested and $c$ is a fixed constant.
 - $c = -0.4 + 0.6i$ (rabbit)
 
 **Escape condition:**
+
 $$
 |z_n|^2 > 4
 $$
@@ -196,6 +207,7 @@ All 3D fractals use **ray marching** with signed distance functions (SDF):
 $$
 \text{position} = \text{origin} + t \cdot \text{direction}
 $$
+
 $$
 t_{n+1} = t_n + \text{SDF}(\text{position}_n)
 $$
@@ -211,11 +223,13 @@ The **Sierpinski Tetrahedron** (Tetrix) is the 3D analog of the Sierpinski Trian
 **Construction:** Start with a regular tetrahedron. Connect the midpoints of all edges to form 4 smaller tetrahedra at the corners. Remove the central octahedron. Repeat.
 
 **Space folding SDF:**
+
 $$
 p = |p| \quad \text{(absolute value fold)}
 $$
 
 **Vertex fold:** Fold space across planes passing through edges toward vertices:
+
 $$
 p = p - 2 \cdot \min(0, p \cdot n) \cdot n
 $$
@@ -223,11 +237,13 @@ $$
 where $n$ is the normal to each folding plane.
 
 **Scale and translate:**
+
 $$
 p = 2p - \text{offset}
 $$
 
 **Distance estimate:**
+
 $$
 d = \frac{|p| - r}{\text{scale}^n}
 $$
@@ -243,30 +259,37 @@ The **Menger Sponge** is a 3D fractal that generalizes the Sierpinski Carpet to 
 **Construction:** Divide the cube into a 3×3×3 grid (27 smaller cubes). Remove the center cube and the 6 cubes sharing a face with it (7 cubes total, leaving 20). Repeat for each remaining cube.
 
 **Volume after $n$ iterations:**
+
 $$
 V_n = \left(\frac{20}{27}\right)^n \cdot V_0
 $$
 
 **SDF using space folding:**
+
 $$
 p = |p| \quad \text{(fold to positive octant)}
 $$
+
 $$
 \text{if } p.x < p.y: \text{swap}(p.x, p.y)
 $$
+
 $$
 \text{if } p.x < p.z: \text{swap}(p.x, p.z)
 $$
+
 $$
 \text{if } p.y < p.z: \text{swap}(p.y, p.z)
 $$
 
 **Scale and offset:**
+
 $$
 p = 3p - 2 \cdot \text{offset}
 $$
 
 **Cross removal condition:**
+
 $$
 \text{if } p.z > 1: p.z = p.z - 2
 $$
@@ -280,22 +303,27 @@ $$
 The **Mandelbulb** is a 3D analog of the Mandelbrot Set, using spherical coordinates to define a power operation in 3D space.
 
 **Spherical coordinates:**
+
 $$
 r = |z| = \sqrt{x^2 + y^2 + z^2}
 $$
+
 $$
 \theta = \arctan\left(\frac{\sqrt{x^2 + y^2}}{z}\right) = \arccos\left(\frac{z}{r}\right)
 $$
+
 $$
 \phi = \arctan\left(\frac{y}{x}\right)
 $$
 
 **Power formula (for power $n$, typically $n=8$):**
+
 $$
 z^n = r^n \begin{pmatrix} \sin(n\theta)\cos(n\phi) \\ \sin(n\theta)\sin(n\phi) \\ \cos(n\theta) \end{pmatrix}
 $$
 
 **Iteration:**
+
 $$
 z_{k+1} = z_k^n + c
 $$
@@ -303,6 +331,7 @@ $$
 where $c$ is the initial point and $z_0 = c$.
 
 **Distance estimate:**
+
 $$
 \text{DE} = 0.5 \cdot \frac{\ln(r) \cdot r}{|dz|}
 $$
@@ -310,6 +339,7 @@ $$
 where $|dz|$ is the running derivative.
 
 **Escape condition:**
+
 $$
 r > 2 \text{ (bailout radius)}
 $$
@@ -323,6 +353,7 @@ $$
 The **Mandelbox** is a box-like fractal discovered by Tom Lowe in 2010. It uses conditional folding operations rather than power formulas.
 
 **Box fold:** Fold each component into the range $[-1, 1]$:
+
 $$
 x = \begin{cases}
 -2 - x & \text{if } x < -1 \\
@@ -332,6 +363,7 @@ x & \text{if } -1 \leq x \leq 1 \\
 $$
 
 **Ball fold:** Apply spherical inversion based on distance from origin:
+
 $$
 z = \begin{cases}
 z / r_{\min}^2 & \text{if } |z| < r_{\min} \\
@@ -343,6 +375,7 @@ $$
 where $r_{\min} = 0.5$ (typical value).
 
 **Full iteration:**
+
 $$
 z_{n+1} = s \cdot \text{ballFold}(\text{boxFold}(z_n)) + c
 $$
@@ -350,6 +383,7 @@ $$
 where $s$ is the scale factor (typically $s = 2$) and $c$ is the initial point.
 
 **Distance estimate:**
+
 $$
 \text{DE} = \frac{|z| - r_{\min}}{|dz|}
 $$
