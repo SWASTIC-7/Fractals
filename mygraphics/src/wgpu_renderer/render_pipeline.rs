@@ -34,6 +34,9 @@ impl MyRenderPipeline {
             ShaderType::MandelbrotSet => {
                 device.create_shader_module(include_spirv!(env!("SHADER_MANDELBROT_SPV")))
             }
+            ShaderType::JuliaSet => {
+                device.create_shader_module(include_spirv!(env!("SHADER_JULIA_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {

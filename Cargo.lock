@@ -1097,6 +1097,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "julia-set"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "glam",
+ "spirv-std",
+]
+
+[[package]]
 name = "koch-curve"
 version = "0.1.0"
 dependencies = [
