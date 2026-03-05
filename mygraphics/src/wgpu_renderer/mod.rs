@@ -1,6 +1,6 @@
 use crate::wgpu_renderer::swapchain::MySwapchainManager;
 use anyhow::Context;
-use mygraphics_shaders::ShaderConstants;
+use sierpinskie_shaders::ShaderConstants;
 use std::sync::Arc;
 use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};

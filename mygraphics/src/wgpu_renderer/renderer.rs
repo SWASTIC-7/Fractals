@@ -1,5 +1,5 @@
 use crate::wgpu_renderer::render_pipeline::MyRenderPipeline;
-use mygraphics_shaders::ShaderConstants;
+use sierpinskie_shaders::ShaderConstants;
 use wgpu::util::{BufferInitDescriptor, DeviceExt};
 use wgpu::wgt::CommandEncoderDescriptor;
 use wgpu::{

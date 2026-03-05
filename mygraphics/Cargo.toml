@@ -12,7 +12,7 @@ workspace = true
 
 [dependencies]
 # shader crate
-mygraphics-shaders = { path = "../mygraphics-shaders" }
+sierpinskie-shaders = { path = "../sierpinskie-shaders" }
 
 # API
 wgpu.workspace = true

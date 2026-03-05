@@ -1,5 +1,5 @@
 use crate::wgpu_renderer::renderer::{GlobalBindGroup, GlobalBindGroupLayout};
-use mygraphics_shaders::ShaderConstants;
+use sierpinskie_shaders::ShaderConstants;
 use wgpu::{
     ColorTargetState, ColorWrites, Device, FragmentState, FrontFace, MultisampleState,
     PipelineLayoutDescriptor, PolygonMode, PrimitiveState, PrimitiveTopology, PushConstantRange,
@@ -69,6 +69,6 @@ impl MyRenderPipeline {
     pub fn draw(&self, rpass: &mut RenderPass<'_>, global_bind_group: &GlobalBindGroup) {
         rpass.set_pipeline(&self.pipeline);
         rpass.set_bind_group(0, &global_bind_group.0, &[]);
-        rpass.draw(0..3, 0..1);
+        rpass.draw(0..6, 0..1);
     }
 }

@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 pub fn main() -> anyhow::Result<()> {
     let manifest_dir = env!("CARGO_MANIFEST_DIR");
-    let crate_path = [manifest_dir, "..", "mygraphics-shaders"]
+    let crate_path = [manifest_dir, "..", "sierpinskie-shaders"]
         .iter()
         .copied()
         .collect::<PathBuf>();

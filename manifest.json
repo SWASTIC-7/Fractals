@@ -1,11 +1,11 @@
 [
   {
-    "source_path": "../mygraphics_shaders.spv",
+    "source_path": "../sierpinskie_shaders.spv",
     "entry_point": "main_fs",
     "wgsl_entry_point": "main_fs"
   },
   {
-    "source_path": "../mygraphics_shaders.spv",
+    "source_path": "../sierpinskie_shaders.spv",
     "entry_point": "main_vs",
     "wgsl_entry_point": "main_vs"
   }
