@@ -3,10 +3,7 @@ use cargo_gpu::spirv_builder::{ShaderPanicStrategy, SpirvMetadata};
 use std::path::PathBuf;
 
 fn compile_shader(manifest_dir: &str, shader_name: &str, env_var_name: &str) -> anyhow::Result<()> {
-    let crate_path: PathBuf = [manifest_dir, "..", shader_name]
-        .iter()
-        .copied()
-        .collect();
+    let crate_path: PathBuf = [manifest_dir, "..", shader_name].iter().copied().collect();
 
     let install = Install::from_shader_crate(crate_path.clone()).run()?;
     let mut builder = install.to_spirv_builder(crate_path, "spirv-unknown-vulkan1.3");

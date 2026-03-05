@@ -1,5 +1,5 @@
-use crate::wgpu_renderer::renderer::{GlobalBindGroup, GlobalBindGroupLayout};
 use crate::wgpu_renderer::ShaderType;
+use crate::wgpu_renderer::renderer::{GlobalBindGroup, GlobalBindGroupLayout};
 use sierpinskie_triangle::ShaderConstants;
 use wgpu::{
     ColorTargetState, ColorWrites, Device, FragmentState, FrontFace, MultisampleState,

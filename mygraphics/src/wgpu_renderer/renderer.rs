@@ -1,5 +1,5 @@
-use crate::wgpu_renderer::render_pipeline::MyRenderPipeline;
 use crate::wgpu_renderer::ShaderType;
+use crate::wgpu_renderer::render_pipeline::MyRenderPipeline;
 use sierpinskie_triangle::ShaderConstants;
 use wgpu::util::{BufferInitDescriptor, DeviceExt};
 use wgpu::wgt::CommandEncoderDescriptor;
