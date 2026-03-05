@@ -37,6 +37,9 @@ impl MyRenderPipeline {
             ShaderType::JuliaSet => {
                 device.create_shader_module(include_spirv!(env!("SHADER_JULIA_SPV")))
             }
+            ShaderType::SierpinskiTetrahedron => {
+                device.create_shader_module(include_spirv!(env!("SHADER_TETRAHEDRON_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {

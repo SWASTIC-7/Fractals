@@ -17,6 +17,7 @@ pub enum ShaderType {
     KochCurve,
     MandelbrotSet,
     JuliaSet,
+    SierpinskiTetrahedron,
 }
 
 impl ShaderType {
@@ -27,6 +28,7 @@ impl ShaderType {
             ShaderType::KochCurve => "Koch Curve",
             ShaderType::MandelbrotSet => "Mandelbrot Set",
             ShaderType::JuliaSet => "Julia Set",
+            ShaderType::SierpinskiTetrahedron => "Sierpinski Tetrahedron",
         }
     }
 }

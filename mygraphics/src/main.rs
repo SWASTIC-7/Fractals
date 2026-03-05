@@ -8,10 +8,11 @@ fn select_shader() -> ShaderType {
     println!("  3. Koch Curve");
     println!("  4. Mandelbrot Set");
     println!("  5. Julia Set");
+    println!("  6. Sierpinski Tetrahedron");
     println!();
 
     loop {
-        print!("Enter your choice (1-5): ");
+        print!("Enter your choice (1-6): ");
         io::stdout().flush().unwrap();
 
         let mut input = String::new();
@@ -26,7 +27,8 @@ fn select_shader() -> ShaderType {
             "3" => return ShaderType::KochCurve,
             "4" => return ShaderType::MandelbrotSet,
             "5" => return ShaderType::JuliaSet,
-            _ => println!("Invalid choice. Please enter 1-5."),
+            "6" => return ShaderType::SierpinskiTetrahedron,
+            _ => println!("Invalid choice. Please enter 1-6."),
         }
     }
 }

@@ -5,7 +5,8 @@ members = [
     "sierpinskie-carpet",
     "koch-curve",
     "mandelbrotset",
-    "julia-set"
+    "julia-set",
+    "sierpinskie-tetrahedron"
 ]
 resolver = "3"
 

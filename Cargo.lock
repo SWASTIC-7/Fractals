@@ -2094,6 +2094,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "sierpinskie-tetrahedron"
+version = "0.1.0"
+dependencies = [
+ "bytemuck",
+ "glam",
+ "spirv-std",
+]
+
+[[package]]
 name = "sierpinskie-triangle"
 version = "0.1.0"
 dependencies = [
