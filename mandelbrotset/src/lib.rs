@@ -60,31 +60,34 @@ pub fn main_fs(
     let max_iter = RECURSION_LIMIT.min((50.0 + f32::log2(zoom + 1.0) * 50.0) as i32);
     let recursion_count = mandelbrot(c, max_iter);
 
-    // Put the amount of iterations in range [0, 1]
-    let f = recursion_count as f32 / max_iter as f32;
-
     // Coloring the fractal
     if recursion_count == max_iter {
         // Inside the Mandelbrot set - black
         *output = vec4(0.0, 0.0, 0.0, 1.0);
     } else {
-        // Outside - color based on iteration count with position-based gradients
-        let ff = f32::powf(f, 0.5); // Sqrt for smoother gradient
-        let smoothness = 1.0;
-        let offset = 0.5;
+        // Outside - only color near the boundary (high iteration counts)
+        // Points that escape quickly (low iterations) should be black
+        let normalized = recursion_count as f32 / max_iter as f32;
+        
+        // Only show color for points near the boundary (high iteration count)
+        // This creates the "outline" effect
+        let threshold = 0.1; // Points below this threshold are black
+        
+        if normalized < threshold {
+            // Far from boundary - black background
+            *output = vec4(0.0, 0.0, 0.0, 1.0);
+        } else {
+            // Near boundary - apply gradient based on position
+            let intensity = (normalized - threshold) / (1.0 - threshold);
+            let offset = 0.5;
 
-        let r = smoothstep(0.0, smoothness, ff) * (uv2.x * 0.5 + 0.5 + offset);
-        let b = smoothstep(0.0, smoothness, ff) * (uv2.y * 0.5 + 0.5 + offset);
-        let g = smoothstep(0.0, smoothness, ff) * (-uv2.x * 0.5 + 0.5 + offset);
+            let r = intensity * (uv2.x * 0.5 + 0.5 + offset);
+            let b = intensity * (uv2.y * 0.5 + 0.5 + offset);
+            let g = intensity * (-uv2.x * 0.5 + 0.5 + offset);
 
-        *output = vec4(r, g, b, 1.0);
+            *output = vec4(r, g, b, 1.0);
+        }
     }
-}
-
-/// Smoothstep interpolation
-fn smoothstep(edge0: f32, edge1: f32, x: f32) -> f32 {
-    let t = ((x - edge0) / (edge1 - edge0)).clamp(0.0, 1.0);
-    t * t * (3.0 - 2.0 * t)
 }
 
 #[spirv(vertex)]
