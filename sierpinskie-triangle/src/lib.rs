@@ -2,7 +2,7 @@
 
 use bytemuck::{Pod, Zeroable};
 use core::f32::consts::PI;
-use glam::{Vec2, Vec4, vec2, vec3, vec4};
+use glam::{Vec2, Vec4, vec2, vec4};
 #[cfg(target_arch = "spirv")]
 use spirv_std::num_traits::Float;
 use spirv_std::spirv;
@@ -109,25 +109,22 @@ pub fn main_fs(
 
     // Line smoothness based on resolution
     let line_smoothness = 3.0 / resolution.y;
-    let offset = 0.5;
 
-    // Color channels with gradients
-    let r = smoothstep(line_smoothness, 0.0, d) * 0.5 * (uv2.x * 0.5 + 0.5 + offset);
-    let g = smoothstep(line_smoothness, 0.0, d) * 0.5 * (-uv2.x * 0.5 + 0.5 + offset);
-    let b = smoothstep(line_smoothness, 0.0, d) * 0.5 * (uv2.y * 0.5 + 0.5 + offset);
+    // Mask: 1.0 inside triangle, 0.0 outside (with smooth edge)
+    let mask = smoothstep(line_smoothness, 0.0, d);
 
-    let mut col = vec3(r, g, b);
+    // Only color inside the triangle with gradient
+    if mask > 0.0 {
+        // Gradient colors based on position
+        let r = 0.3 + 0.4 * (uv2.x * 0.5 + 0.5);
+        let g = 0.2 + 0.5 * (-uv2.x * 0.5 + 0.5);
+        let b = 0.5 + 0.4 * (uv2.y * 0.5 + 0.5);
 
-    // Draw coordinate axes
-    let axis_smoothness = 2.0 / resolution.y;
-    let x_axis = smoothstep(axis_smoothness, 0.0, f32::abs(uv_fractal.y));
-    let y_axis = smoothstep(axis_smoothness, 0.0, f32::abs(uv_fractal.x));
-    col.x += x_axis; // R channel for X axis
-    col.z += x_axis; // B channel for X axis
-    col.z += y_axis; // B channel for Y axis
-    col.y += y_axis; // G channel for Y axis
-
-    *output = vec4(col.x, col.y, col.z, 1.0);
+        *output = vec4(r * mask, g * mask, b * mask, 1.0);
+    } else {
+        // Black background
+        *output = vec4(0.0, 0.0, 0.0, 1.0);
+    }
 }
 
 #[spirv(vertex)]
