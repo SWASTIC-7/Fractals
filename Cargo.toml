@@ -8,7 +8,8 @@ members = [
     "julia-set",
     "sierpinskie-tetrahedron",
     "menger-sponge",
-    "mandelbulb"
+    "mandelbulb",
+    "mandelbox"
 ]
 resolver = "3"
 

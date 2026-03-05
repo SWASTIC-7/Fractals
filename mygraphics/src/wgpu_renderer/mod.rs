@@ -20,6 +20,7 @@ pub enum ShaderType {
     SierpinskiTetrahedron,
     MengerSponge,
     Mandelbulb,
+    Mandelbox,
 }
 
 impl ShaderType {
@@ -33,6 +34,7 @@ impl ShaderType {
             ShaderType::SierpinskiTetrahedron => "Sierpinski Tetrahedron",
             ShaderType::MengerSponge => "Menger Sponge",
             ShaderType::Mandelbulb => "Mandelbulb",
+            ShaderType::Mandelbox => "Mandelbox",
         }
     }
 }

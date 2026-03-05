@@ -46,6 +46,9 @@ impl MyRenderPipeline {
             ShaderType::Mandelbulb => {
                 device.create_shader_module(include_spirv!(env!("SHADER_MANDELBULB_SPV")))
             }
+            ShaderType::Mandelbox => {
+                device.create_shader_module(include_spirv!(env!("SHADER_MANDELBOX_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {
