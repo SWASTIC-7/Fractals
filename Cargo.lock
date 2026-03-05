@@ -1250,15 +1250,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "menger-brocolli"
-version = "0.1.0"
-dependencies = [
- "bytemuck",
- "glam",
- "spirv-std",
-]
-
-[[package]]
 name = "menger-sponge"
 version = "0.1.0"
 dependencies = [

@@ -30,7 +30,6 @@ pub fn main() -> anyhow::Result<()> {
     compile_shader(manifest_dir, "menger-sponge", "SHADER_MENGER_SPV")?;
     compile_shader(manifest_dir, "mandelbulb", "SHADER_MANDELBULB_SPV")?;
     compile_shader(manifest_dir, "mandelbox", "SHADER_MANDELBOX_SPV")?;
-    compile_shader(manifest_dir, "menger-brocolli", "SHADER_BROCOLLI_SPV")?;
 
     Ok(())
 }
