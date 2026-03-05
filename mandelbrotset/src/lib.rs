@@ -35,12 +35,6 @@ fn mandelbrot(c: Vec2, max_iter: i32) -> i32 {
     max_iter
 }
 
-/// Smoothstep interpolation
-fn smoothstep(edge0: f32, edge1: f32, x: f32) -> f32 {
-    let t = ((x - edge0) / (edge1 - edge0)).clamp(0.0, 1.0);
-    t * t * (3.0 - 2.0 * t)
-}
-
 #[spirv(fragment)]
 pub fn main_fs(
     frag_coord: Vec2,
@@ -55,34 +49,42 @@ pub fn main_fs(
     let uv = 2.0 * (frag_coord - 0.5 * resolution) / resolution.y;
     let uv2 = uv; // Copy for coloring
 
-    // Calculate zoom based on time (exponential zoom)
-    let zoom_time = time * 0.032;
-    let zoom = f32::powf(zoom_time + 1.0, (zoom_time + 1.0) / 10.0);
+    // Calculate zoom based on time (smooth exponential zoom)
+    // Slower rate (0.08) for smoother zoom experience
+    let zoom = f32::exp(time * 0.08);
 
     // Scale UV by zoom and offset to location
     let c = uv / zoom + location;
 
-    // Calculate mandelbrot iterations
-    let recursion_count = mandelbrot(c, RECURSION_LIMIT);
+    // Calculate mandelbrot iterations - increase with zoom for more detail
+    let max_iter = RECURSION_LIMIT.min((50.0 + f32::log2(zoom + 1.0) * 50.0) as i32);
+    let recursion_count = mandelbrot(c, max_iter);
 
     // Put the amount of iterations in range [0, 1]
-    let f = recursion_count as f32 / RECURSION_LIMIT as f32;
+    let f = recursion_count as f32 / max_iter as f32;
 
     // Coloring the fractal
-    if recursion_count == RECURSION_LIMIT {
+    if recursion_count == max_iter {
         // Inside the Mandelbrot set - black
         *output = vec4(0.0, 0.0, 0.0, 1.0);
     } else {
-        // Outside - color based on iteration count with smooth coloring
-        let ff = f32::powf(f, 1.0 - f * f32::max(0.0, 50.0 - time));
+        // Outside - color based on iteration count with position-based gradients
+        let ff = f32::powf(f, 0.5); // Sqrt for smoother gradient
         let smoothness = 1.0;
+        let offset = 0.5;
 
-        let r = smoothstep(0.0, smoothness, ff) * (uv2.x * 0.5 + 0.5);
-        let b = smoothstep(0.0, smoothness, ff) * (uv2.y * 0.5 + 0.5);
-        let g = smoothstep(0.0, smoothness, ff) * (-uv2.x * 0.5 + 0.5);
+        let r = smoothstep(0.0, smoothness, ff) * (uv2.x * 0.5 + 0.5 + offset);
+        let b = smoothstep(0.0, smoothness, ff) * (uv2.y * 0.5 + 0.5 + offset);
+        let g = smoothstep(0.0, smoothness, ff) * (-uv2.x * 0.5 + 0.5 + offset);
 
         *output = vec4(r, g, b, 1.0);
     }
+}
+
+/// Smoothstep interpolation
+fn smoothstep(edge0: f32, edge1: f32, x: f32) -> f32 {
+    let t = ((x - edge0) / (edge1 - edge0)).clamp(0.0, 1.0);
+    t * t * (3.0 - 2.0 * t)
 }
 
 #[spirv(vertex)]
