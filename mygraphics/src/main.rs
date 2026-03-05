@@ -12,10 +12,11 @@ fn select_shader() -> ShaderType {
     println!("  7. Menger Sponge");
     println!("  8. Mandelbulb");
     println!("  9. Mandelbox");
+    println!(" 10. Menger Brocolli");
     println!();
 
     loop {
-        print!("Enter your choice (1-9): ");
+        print!("Enter your choice (1-10): ");
         io::stdout().flush().unwrap();
 
         let mut input = String::new();
@@ -34,7 +35,8 @@ fn select_shader() -> ShaderType {
             "7" => return ShaderType::MengerSponge,
             "8" => return ShaderType::Mandelbulb,
             "9" => return ShaderType::Mandelbox,
-            _ => println!("Invalid choice. Please enter 1-9."),
+            "10" => return ShaderType::MengerBrocolli,
+            _ => println!("Invalid choice. Please enter 1-10."),
         }
     }
 }

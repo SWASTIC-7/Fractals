@@ -49,6 +49,9 @@ impl MyRenderPipeline {
             ShaderType::Mandelbox => {
                 device.create_shader_module(include_spirv!(env!("SHADER_MANDELBOX_SPV")))
             }
+            ShaderType::MengerBrocolli => {
+                device.create_shader_module(include_spirv!(env!("SHADER_BROCOLLI_SPV")))
+            }
         };
 
         let layout = device.create_pipeline_layout(&PipelineLayoutDescriptor {

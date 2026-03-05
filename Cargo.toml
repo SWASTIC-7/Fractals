@@ -9,7 +9,8 @@ members = [
     "sierpinskie-tetrahedron",
     "menger-sponge",
     "mandelbulb",
-    "mandelbox"
+    "mandelbox",
+    "menger-brocolli"
 ]
 resolver = "3"
 

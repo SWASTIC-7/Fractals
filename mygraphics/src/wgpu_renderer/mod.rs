@@ -21,6 +21,7 @@ pub enum ShaderType {
     MengerSponge,
     Mandelbulb,
     Mandelbox,
+    MengerBrocolli,
 }
 
 impl ShaderType {
@@ -35,6 +36,7 @@ impl ShaderType {
             ShaderType::MengerSponge => "Menger Sponge",
             ShaderType::Mandelbulb => "Mandelbulb",
             ShaderType::Mandelbox => "Mandelbox",
+            ShaderType::MengerBrocolli => "Menger Brocolli",
         }
     }
 }
