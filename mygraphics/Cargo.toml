@@ -15,6 +15,7 @@ workspace = true
 sierpinskie-triangle = { path = "../sierpinskie-triangle" }
 sierpinskie-carpet = { path = "../sierpinskie-carpet" }
 koch-curve = { path = "../koch-curve" }
+mandelbrotset = { path = "../mandelbrotset" }
 # API
 wgpu.workspace = true
 pollster.workspace = true

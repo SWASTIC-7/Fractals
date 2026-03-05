@@ -15,6 +15,7 @@ pub enum ShaderType {
     SierpinskiTriangle,
     SierpinskiCarpet,
     KochCurve,
+    MandelbrotSet,
 }
 
 impl ShaderType {
@@ -23,6 +24,7 @@ impl ShaderType {
             ShaderType::SierpinskiTriangle => "Sierpinski Triangle",
             ShaderType::SierpinskiCarpet => "Sierpinski Carpet",
             ShaderType::KochCurve => "Koch Curve",
+            ShaderType::MandelbrotSet => "Mandelbrot Set",
         }
     }
 }

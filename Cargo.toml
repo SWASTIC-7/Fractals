@@ -3,7 +3,8 @@ members = [
     "mygraphics",
     "sierpinskie-triangle",
     "sierpinskie-carpet",
-    "koch-curve"
+    "koch-curve",
+    "mandelbrotset"
 ]
 resolver = "3"
 
