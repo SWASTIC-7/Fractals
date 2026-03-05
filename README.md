@@ -9,21 +9,6 @@ This project uses:
 - **wgpu** - Cross-platform graphics API for rendering
 - **winit** - Window creation and event handling
 
-## Project Structure
-
-```
-fractals/
-├── mygraphics/          # Main application & wgpu renderer
-│   └── src/
-│       ├── main.rs
-│       ├── lib.rs
-│       └── wgpu_renderer/
-├── sierpinskie-shaders/  # Rust-GPU shader code
-│   └── src/
-│       └── lib.rs       # Shader entry points (vertex/fragment)
-├── sierpinskie_shaders.spv  # Compiled SPIR-V output
-└── manifest.json        # Shader manifest
-```
 
 ## Prerequisites
 
@@ -38,6 +23,16 @@ cargo gpu build
 
 # Run the application
 cargo run -p mygraphics
+
+# Select a shader to run:
+
+#   1. Sierpinski Triangle
+#   2. Sierpinski Carpet
+#   3. Koch Curve
+#   4. Mandelbrot Set
+#   5. Julia Set
+
+# Enter your choice (1-5):
 ```
 
 ## Fractals to Implement
@@ -46,45 +41,24 @@ cargo run -p mygraphics
 
 | Fractal | Hausdorff Dimension | Status |
 |---------|---------------------|--------|
-| Sierpinski Triangle | $D = \log_{2}{3} \approx 1.585$ | Planned |
-| Sierpinski Carpet | $D = \log_{3}{8} \approx 1.893$ | Planned |
-| Koch Curve | $D = \log_{3}{4} \approx 1.262$ | Planned |
-| Mandelbrot Set | $D = 2$ | Planned |
-| Julia Set | $D = 2$ | Planned |
+| Sierpinski Triangle | $D = \log_{2}{3} \approx 1.585$ | Done |
+| Sierpinski Carpet | $D = \log_{3}{8} \approx 1.893$ | Done |
+| Koch Curve | $D = \log_{3}{4} \approx 1.262$ | Done |
+| Mandelbrot Set | $D = 2$ | Done |
+| Julia Set | $D = 2$ | Done |
 
 ### 3D Fractals (Ray Marching)
 
 | Fractal | Hausdorff Dimension | Status |
 |---------|---------------------|--------|
-| Sierpinski Tetrahedron | $D = 2$ | Planned |
-| Menger Sponge | $D = \log_{3}{20} \approx 2.727$ | Planned |
-| Mandelbulb | $D = 3$ (conjectured) | Planned |
-| Mandelbox | Varies | Planned |
+| Sierpinski Tetrahedron | $D = 2$ | Done |
+| Menger Sponge | $D = \log_{3}{20} \approx 2.727$ | Done |
+| Mandelbulb | $D = 3$ (conjectured) | Done |
+| Mandelbox | Varies | Done |
 
-## Writing Shaders in Rust
 
-Shaders are written in [sierpinskie-shaders/src/lib.rs](sierpinskie-shaders/src/lib.rs) using `spirv-std`:
-
-```rust
-#![no_std]
-use spirv_std::spirv;
-use glam::{Vec3, Vec4};
-
-#[spirv(fragment)]
-pub fn main_fs(vtx_color: Vec3, output: &mut Vec4) {
-    *output = Vec4::from((vtx_color, 1.0));
-}
-
-#[spirv(vertex)]
-pub fn main_vs(
-    #[spirv(vertex_index)] vert_id: i32,
-    #[spirv(position)] vtx_pos: &mut Vec4,
-    vtx_color: &mut Vec3,
-) {
-    // Vertex shader logic
-}
-```
-
+## Credit
+- [pedrotrschneider](https://github.com/pedrotrschneider/shader-fractals) has written fractal shaders in glsl
 ## Resources
 
 - [Rust-GPU](https://github.com/Rust-GPU/rust-gpu) - Compile Rust to SPIR-V
